@@ -17,20 +17,17 @@ print("Dataset loaded:", df.shape)
 
 
 
-# Drop ID column
 X = df.drop(["Loan_Status", "Loan_ID"], axis=1)
 y = df["Loan_Status"]
 
 num_cols = X.select_dtypes(include=["int64", "float64"]).columns
 cat_cols = X.select_dtypes(include=["object"]).columns
 
-# Numerical preprocessing
 num_pipeline = Pipeline([
     ("imputer", SimpleImputer(strategy="median")),
     ("scaler", StandardScaler())
 ])
 
-# Categorical preprocessing (ENCODING INCLUDED)
 cat_pipeline = Pipeline([
     ("imputer", SimpleImputer(strategy="most_frequent")),
     ("encoder", OneHotEncoder(drop="first", handle_unknown="ignore"))
@@ -78,4 +75,4 @@ print(classification_report(y_test, y_pred))
 with open("loan_approval_model.pkl", "wb") as f:
     pickle.dump(best_model, f)
 
-print("✅ Model saved as loan_approval_model.pkl")
+print("Model saved as loan_approval_model.pkl")
