@@ -10,7 +10,7 @@ MODEL_PATH = "loan_approval_model.pkl"
 with open(MODEL_PATH, "rb") as file:
     model = pickle.load(file)
 
-print("✅ Model loaded successfully")
+print("Model loaded successfully")
 
 # PREDICTION FUNCTION
 
@@ -44,7 +44,7 @@ def predict_loan(
 
     prediction = model.predict(input_data)[0]
 
-    return "✅ Loan Approved" if prediction == "Y" else "❌ Loan Rejected"
+    return "Loan Approved" if prediction == "Y" else "Loan Rejected"
 
 
 interface = gr.Interface(
